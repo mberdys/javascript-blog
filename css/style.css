@@ -37,6 +37,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .sidebar {
@@ -89,10 +90,13 @@ body {
 /* Post */
 .post {
   display: none;
+  opacity: 0;
 }
 
 .post.active {
   display: block;
+  opacity: 1;
+  transition: all 1s;
 }
 
 .post-author {
@@ -106,5 +110,18 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+/* Media */
+@media (max-width: 767px) {
+  .wrapper {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .sidebar, .posts {
+    margin-bottom: 10px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

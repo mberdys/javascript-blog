@@ -46,6 +46,7 @@ body {
 .wrapper {
   display: flex;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .sidebar {
@@ -103,8 +104,11 @@ body {
 
 .post {
   display: none;
+  opacity: 0;
   &.active {
     display: block;
+    opacity: 1;
+    transition: all 1s;
   }
 }
 
@@ -116,5 +120,17 @@ body {
   display: flex;
   p {
     margin: 0 10px 0 0;
+  }
+}
+
+/* Media */
+@media (max-width: 767px){
+  .wrapper {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .sidebar, .posts {
+    margin-bottom: 10px;
   }
 }
