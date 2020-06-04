@@ -1,13 +1,13 @@
 'use strict';
 
-function titleClickHandler(event){
+function titleClickHandler(event) {
   console.log('Link was clicked!');
   console.log(event);
 
   /* [DONE] remove class 'active' from all article links  */
   const activeLinks = document.querySelectorAll('.titles a.active'); //wyszukuje wszystkie elementy pasujące do selektora
 
-  for(let activeLink of activeLinks){
+  for (let activeLink of activeLinks) {
     activeLink.classList.remove('active'); //usuwa klasę active z wcześniej wyszukanego elementu
   }
 
@@ -20,7 +20,7 @@ function titleClickHandler(event){
   /* [DONE] remove class 'active' from all articles */
   const activeArticles = document.querySelectorAll('.posts article.active');
 
-  for(let activeArticle of activeArticles){
+  for (let activeArticle of activeArticles) {
     activeArticle.classList.remove('active');
   }
 
@@ -34,15 +34,15 @@ function titleClickHandler(event){
 
   /* [DONE] add class 'active' to the correct article */
   targetArticle.classList.add('active');
-
 }
 
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+const optArticleSelector = '.post';
+const optTitleSelector = '.post-title';
+const optTitleListSelector = '.titles';
+const optArticleTagsSelector = '.post-tags .list';
 
-function generateTitleLinks(){
+function generateTitleLinks() {
   console.log('Link was generated!');
 
   /* remove contents of titleList */
@@ -53,7 +53,7 @@ function generateTitleLinks(){
   const articles = document.querySelectorAll(optArticleSelector);
   let html = '';
 
-  for(let article of articles){
+  for (let article of articles) {
     console.log(article);
     /* get the article id */
     const articleId = article.getAttribute('id');
@@ -73,10 +73,39 @@ function generateTitleLinks(){
 
   const links = document.querySelectorAll('.titles a');
 
-  for(let link of links){
+  for (let link of links) {
     link.addEventListener('click', titleClickHandler); //ustawia nasłuchiwanie kliku na titleClickHandler
   }
 
 }
 
 generateTitleLinks();
+
+
+function generateTags() {
+  /* find all articles */
+
+  /* START LOOP: for every article: */
+
+    /* find tags wrapper */
+
+    /* make html variable with empty string */
+
+    /* get tags from data-tags attribute */
+
+    /* split tags into array */
+
+    /* START LOOP: for each tag */
+
+      /* generate HTML of the link */
+
+      /* add generated code to html variable */
+
+    /* END LOOP: for each tag */
+
+    /* insert HTML of all the links into the tags wrapper */
+
+  /* END LOOP: for every article: */
+}
+
+generateTags();

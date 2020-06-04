@@ -55,7 +55,6 @@ body {
 
 .posts {
   flex: 2 0 0;
-  position: relative;
 }
 
 .sidebar, .posts {
@@ -104,12 +103,12 @@ body {
 /* Post */
 
 .post {
-  position: absolute;
+  display: none;
   opacity: 0;
+  transition: all 1s;
   &.active {
-    opacity: 1;
-    transition: all 1s;
-  }
+    display: block;
+    }
 }
 
 .post-author {
