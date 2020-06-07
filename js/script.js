@@ -42,6 +42,7 @@ const optTitleSelector = '.post-title';
 const optTitleListSelector = '.titles';
 const optArticleTagsSelector = '.post-tags .list';
 const optArticleAuthorSelector = '.post-author';
+const optTagsListSelector = '.tags.list';
 
 function generateTitleLinks(customSelector = '') {
   console.log('Link was generated!');
@@ -85,6 +86,8 @@ generateTitleLinks();
 
 function generateTags() {
   console.log('Tag was generated!');
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector); //znajduje wszystkie .post w dokumencie
   console.log('articles: ' + articles);
@@ -110,12 +113,22 @@ function generateTags() {
       /* add generated code to html variable */
       html = html + linkHTML; //nadanie zmiennej html wartości stałej linkHTML
       console.log(html);
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(linkHTML) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html; //wstawienie zmiennej wartości zmiennej html do stałej tagsWrapper w pliku HTML
   /* END LOOP: for every article: */
   }
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
   
 }
 
@@ -168,6 +181,7 @@ addClickListenersToTags();
 
 function generateAuthors(){
   console.log('Author is generated!');
+  let allAuthors = [];
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   console.log('articles: ' + articles);
@@ -185,9 +199,18 @@ function generateAuthors(){
     const linkHTML = '<p class="post-author"><a href="#author' + articleAuthor +'">' + articleAuthor + '</a></p>';
     console.log('linkhtml: ' + linkHTML);
     html = html + linkHTML;
+    if(allAuthors.indexOf(linkHTML) == -1){
+      /* [NEW] add generated code to allTags array */
+      allAuthors.push(linkHTML);
+    }
     /* END LOOP: for every article: */
     authorWrapper.innerHTML = html;
   }
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
 }
 
 generateAuthors();
