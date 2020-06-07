@@ -86,21 +86,21 @@ generateTitleLinks();
 function generateTags() {
   console.log('Tag was generated!');
   /* find all articles */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(optArticleSelector); //znajduje wszystkie .post w dokumencie
   console.log('articles: ' + articles);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* find tags wrapper */
-    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(optArticleTagsSelector); //znajduje wszystkie .post-tags .list w pętli artykułu
     console.log('tag wrapper: ' + tagsWrapper);
     /* make html variable with empty string */
-    let html = '';
+    let html = '';                                      //zmienna html ma pustą wartość
     /* get tags from data-tags attribute */
-    const articleTags = article.getAttribute('data-tags');
+    const articleTags = article.getAttribute('data-tags'); //zwraca wartość atrybutu o podanej nazwie ('data-tags')
     console.log(articleTags);
     /* split tags into array */
-    const articleTagsArray = articleTags.split(' ');
-    console.log(articleTagsArray);
+    const articleTagsArray = articleTags.split(' '); //rozbicie data-tags na osobne tablice
+    console.log('tags array: ' + articleTagsArray);
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       console.log(tag);
@@ -108,13 +108,12 @@ function generateTags() {
       const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</li><br>';
       console.log(linkHTML);
       /* add generated code to html variable */
-      html = html + linkHTML;
+      html = html + linkHTML; //nadanie zmiennej html wartości stałej linkHTML
       console.log(html);
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
-    tagsWrapper.innerHTML = html;
-    console.log(tagsWrapper);
+    tagsWrapper.innerHTML = html; //wstawienie zmiennej wartości zmiennej html do stałej tagsWrapper w pliku HTML
   /* END LOOP: for every article: */
   }
   
@@ -131,9 +130,9 @@ function tagClickHandler(event) {
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
   /* make a new constant "tag" and extract tag from the "href" constant */
-  const tag = href.replace('#tag-', '');
+  const tag = href.replace('#tag-', '');  //zastąpienie części treści przypisanej do stałej href (#tag- na nic)
   /* find all tag links with class active */
-  const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+  const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]'); //odnalezienie wszystkich aktywnych <a> których atrybut href zaczyna się od #tag- (^="coś tam") 
   /* START LOOP: for each active tag link */
   for (let activeTagLink of activeTagLinks) {
   /* remove class active */
@@ -141,7 +140,7 @@ function tagClickHandler(event) {
   /* END LOOP: for each active tag link */
   }
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const tagLinks = document.querySelectorAll('a[href="' + href + '"]');
+  const tagLinks = document.querySelectorAll('a[href="' + href + '"]'); //odnalezienie wszystkiech <a> z atrybutem href i stałą href
   /* START LOOP: for each found tag link */
   for (let tagLink of tagLinks) {
   /* add class active */
@@ -150,12 +149,12 @@ function tagClickHandler(event) {
   }
   
   /* execute function "generateTitleLinks" with article selector as argument */
-  generateTitleLinks('[data-tags~="'+ tag +'"]');
+  generateTitleLinks('[data-tags~="'+ tag +'"]'); // (~=) w tym wypadku oznacza znajdź wszystkie elementy z atrybutem data-tags które mają w sobie słowo tag
 }
 
 function addClickListenersToTags() {
   /* find all links to tags */
-  const links = document.querySelectorAll('a[href^="#tag"]');
+  const links = document.querySelectorAll('a[href^="#tag-"]'); //znajduje wszystkie <a> których atrybut href zaczyna się od #tag
   console.log('to sa linki: ' + links);
  
   for (let link of links) {
